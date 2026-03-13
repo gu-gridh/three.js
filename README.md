@@ -1,7 +1,9 @@
 # Three.js Viewer
 This project is a 3D viewer built using [Three.js](https://threejs.org/). Options such as lighting, fog, camera, and the model path can be adjusted through the viewer.js file.
 
-## Usage
+## Getting Started
+Install Visual Studio Code
+
 1. Create a new folder called `models` at the root of your project. Add the .glb model to that folder.
 ![Add model](./assets/Readme/screenshot1.png)
 
