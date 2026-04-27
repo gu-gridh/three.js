@@ -27,11 +27,11 @@ const options = {
     cameraPosition: [1, 0.8, 1.0], //x, y, z
 
     // loaders
-    dracoPath: '../lib/draco/',
+    dracoPath: './lib/draco/',
     dracoWorkers: 1,
 
     //model to load
-    modelUrl: '../models/capital.glb',
+    modelUrl: './models/capital.glb',
 };
 
 export const viewer = createViewer(options);
