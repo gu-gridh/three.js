@@ -8,7 +8,7 @@ const options = {
 
     // Scene settings
     background: 0x2d2d2d,
-    fog: { color: 0x2d2d2d, near: 0, far: 10 },
+    fog: { color: 0x2d2d2d, near: 2, far: 10 },
     grid: true,
     
     // Light settings
@@ -19,12 +19,13 @@ const options = {
     rotationX: 0,
     rotationY: 180,
     rotationZ: 0,
+    autoScale: true,
 
     // Camera settings
     fov: 45,
     near: 0.1,
     far: 1000,
-    cameraPosition: [1, 0.8, 1.0], //x, y, z
+    initialCameraPushback: 1,
 
     // loaders
     dracoPath: './lib/draco/',

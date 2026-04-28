@@ -21,8 +21,10 @@ export function createViewer(opts = {}) {
     rotationX = 0,
     rotationY = 0,
     rotationZ = 0,
-    autoScale = true,
+    autoScale = false,
     autoScaleTarget = 2,
+    initialCameraPushback = 0,
+    autoRotateSpeed = 0.5,
   } = opts;
 
   //rendering
@@ -74,6 +76,7 @@ export function createViewer(opts = {}) {
   //controls
   const controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
+  controls.autoRotateSpeed = autoRotateSpeed;
 
   //rendering on-demand
   let needsRender = false;
@@ -135,7 +138,7 @@ export function createViewer(opts = {}) {
     const maxDim = Math.max(size.x, size.y, size.z);
     if (!isFinite(maxDim) || maxDim === 0) return;
 
-    const fitH = maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 2));
+    const fitH = maxDim / (2 * Math.tan(THREE.MathUtils.degToRad(camera.fov) / 3));
     const fitW = fitH / camera.aspect;
     const dist = Math.max(fitH, fitW);
 
@@ -162,10 +165,6 @@ export function createViewer(opts = {}) {
 
     const scale = autoScaleTarget / maxDim;
     obj.scale.multiplyScalar(scale);
-
-    box.setFromObject(obj);
-    const center = box.getCenter(new THREE.Vector3());
-    obj.position.sub(center);
   }
 
   //loading
@@ -190,6 +189,11 @@ export function createViewer(opts = {}) {
         objectRotation(root);
         scene.add(root);
         frameObject(root);
+        if (initialCameraPushback) {
+          const dir = camera.position.clone().sub(controls.target).normalize();
+          camera.position.addScaledVector(dir, initialCameraPushback);
+          controls.update();
+        }
         requestRender();
       },
       undefined,
