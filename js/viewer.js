@@ -17,7 +17,7 @@ const options = {
 
     // Model settings
     rotationX: 0,
-    rotationY: 180,
+    rotationY: 160,
     rotationZ: 0,
     autoScale: true,
 
@@ -25,6 +25,7 @@ const options = {
     fov: 45,
     near: 0.1,
     far: 1000,
+    cameraPosition: [0, 1.2, 1],
     initialCameraPushback: 1,
 
     // loaders
